@@ -9,3 +9,6 @@ jobs:
         run: |
           sudo bash -f ./.github/scripts/build.sh
         shell: bash
+        env:
+            POSTGRES_HOST: postgres
+            POSTGRES_PORT: 5432 # setting up local variables in runtime environment
