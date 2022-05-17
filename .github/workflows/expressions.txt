@@ -1,0 +1,23 @@
+Cheatsheet on Github actions expressions: https://docs.github.com/en/actions/learn-github-actions/expressions
+
+Contains:
+1. Syntax for running conditions
+2. Syntax for running steps in a job conditionally using the 'if' construct
+3. Data types, their values, and comparisons
+4. Operators Syntax (Logical, Array Indexing, Function calling)
+5. In built Functions
+    contains( search, item )
+    startsWith( searchString, searchValue )
+    endsWith( searchString, searchValue )
+    format( string, replaceValue0, replaceValue1, ..., replaceValueN) example: format('Hello {0} {1} {2}', 'Mona', 'the', 'Octocat')
+    join( array, optionalSeparator )
+    toJSON(value) Returns a pretty-print JSON representation of value. You can use this function to debug the information provided in contexts.
+    fromJSON(value) Returns JSON object of value
+    hashFiles(path) Returns a single hash for the set of files that matches the path pattern. You can provide a single path pattern or multiple path patterns separated by commas. The path is relative to the GITHUB_WORKSPACE directory and can only include files inside of the GITHUB_WORKSPACE. SHA 256 hash is used
+6. Status check Functions
+    These are run inside if condition's expression
+    success() Returns true when none of the previous steps have failed or been canceled.
+    always() Causes the step to always execute, and returns true, even when canceled. A job or step will not run when a critical failure prevents the task from running. For example, if getting sources failed.
+    cancelled() Returns true if the workflow was canceled.
+    failure() Returns true when any previous step of a job fails. If you have a chain of dependent jobs, failure() returns true if any ancestor job fails.
+    
