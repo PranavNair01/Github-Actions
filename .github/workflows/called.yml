@@ -1,0 +1,8 @@
+name: Called Workflow
+on: workflow_call
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Hello from Called Workflow"
+    - run: echo "My ref is " + ${{ github.ref }}

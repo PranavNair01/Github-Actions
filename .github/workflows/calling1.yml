@@ -1,0 +1,13 @@
+name: Calling Workflow 1
+on:
+  push:
+    branches:
+    - 'develop'
+    - 'release/**'
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Hello from calling 1 workflow"
+    - run: echo "My ref value is " + ${{ github.ref }}
+    - uses: ./.github/workflows/called
