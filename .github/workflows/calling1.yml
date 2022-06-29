@@ -1,9 +1,7 @@
 name: Calling Workflow 1
 on:
   push:
-    branches:
-    - 'develop'
-    - 'release/**'
+    branches: [ develop, release/** ]
 jobs:
   setup:
     runs-on: ubuntu-latest
