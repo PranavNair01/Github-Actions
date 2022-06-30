@@ -1,15 +1,15 @@
-name: Calling Workflow 1
+name: Calling Workflow 2
 on:
   push:
     branches:
     - develop
-    - 'release/**'
+
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "Hello from calling 1 workflow"
-    - run: echo "My ref value is:" + ${{ github.ref }}
+    - run: echo "Hello from Calling Workflow 2"
+    - run: echo "My ref is " + ${{ github.ref }}
 
   reusable_workflow:
     uses: ./.github/workflows/called.yml
