@@ -1,10 +1,7 @@
 name: Build Workflow
 on:
-  workflow_run:
-    workflows:
-    - e2e Workflow
-    types:
-    - completed
+  workflow_dispatch:
+
 
 #  push:
 #    branches:
