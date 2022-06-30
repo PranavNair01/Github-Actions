@@ -9,4 +9,6 @@ jobs:
     steps:
     - run: echo "Hello from calling 1 workflow"
     - run: echo "My ref value is:" + ${{ github.ref }}
-    - run: echo "My branch value is:" + ${{ github.ref.branch }}
+
+  reusable_workflow:
+    uses: ./.github/workflows/called
