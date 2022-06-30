@@ -1,12 +1,9 @@
 name: Build Workflow
 on:
-  workflow_dispatch:
-
-
-#  push:
-#    branches:
-#    - develop
-#    - 'release/**'
+  push:
+    branches:
+    - develop
+    - 'release/**'
 jobs:
   get-commit-hash:
     runs-on: ubuntu-latest
@@ -15,8 +12,8 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-#    - name: Sleep for 1 minute
-#      run: sleep 1m
+    - name: Sleep for 1 minute
+      run: sleep 1m
     - name: Get Last Successful Commit Hash of e2e Workflow
       id: last-successful-commit
       uses: SamhammerAG/last-successful-build-action@v2
