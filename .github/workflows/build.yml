@@ -1,0 +1,27 @@
+name: Build Workflow
+on:
+  push:
+    branches:
+    - develop
+    - 'release/**'
+jobs:
+  get-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Extract branch name
+      id: extract_branch
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+    - run: echo "My branch is:" + ${{ steps.extract_branch.outputs.branch }}
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+
+  maven-central-deploy-develop:
+    needs: get-branch-name
+    if: ${{ needs.get-branch-name.outputs.branch }} == 'develop'
+    uses: ./.github/workflows/release.yml
+
+  maven-central-deploy-release:
+    needs: get-branch-name
+    if: ${{ needs.get-branch-name.outputs.branch }} == 'release/**'
+    uses: ./.github/workflows/release.yml
