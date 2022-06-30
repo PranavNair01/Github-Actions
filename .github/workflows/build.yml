@@ -13,7 +13,7 @@ jobs:
       uses: SamhammerAG/last-successful-build-action@v2
       with:
         token: ${{ github.token }}
-        branch: github.ref_name
+        branch: "develop"
         workflow: "e2e Workflow"
         verify: true
     - name: Get Commit Hash of current Workflow Run
