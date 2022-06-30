@@ -18,10 +18,10 @@ jobs:
 
   maven-central-deploy-develop:
     needs: get-branch-name
-    if: ${{ needs.get-branch-name.outputs.branch }} == 'develop'
+    if: ${{ github.ref }} == 'refs/heads/develop'
     uses: ./.github/workflows/release.yml
 
   maven-central-deploy-release:
     needs: get-branch-name
-    if: ${{ needs.get-branch-name.outputs.branch }} == 'release/**'
+    if: ${{ github.ref }} == 'refs/heads/release/**'
     uses: ./.github/workflows/release.yml
