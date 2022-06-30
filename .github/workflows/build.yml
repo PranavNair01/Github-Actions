@@ -25,7 +25,7 @@ jobs:
         token: ${{ github.token }}
         branch: "develop"
         workflow: "e2e Workflow"
-        verify: true
+        verify: false
     - name: Get Commit Hash of current Workflow Run
       id: current-commit
       run: echo "::set-output name=sha::${GITHUB_SHA}"
