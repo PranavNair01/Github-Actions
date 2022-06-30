@@ -8,5 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo "Hello from calling 1 workflow"
-    - run: echo "My ref value is " + ${{ github.ref }}
-    - uses: PranavNair0001/Github-Actions/.github/workflows/called@${{ github.ref }}
+    - run: echo "My ref value is:" + ${{ github.ref }}
+
+  reusable_workflow:
+    uses: ./.github/workflows/called.yml
