@@ -14,7 +14,7 @@ jobs:
       with:
         token: ${{ github.token }}
         branch: github.ref_name
-        workflow: "e2e"
+        workflow: "e2e Workflow"
         verify: true
     - name: Get Commit Hash of current Workflow Run
       id: current-commit
