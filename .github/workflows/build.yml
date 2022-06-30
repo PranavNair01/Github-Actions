@@ -8,6 +8,8 @@ jobs:
   get-branch-name:
     runs-on: ubuntu-latest
     steps:
+    - name: View github ref name
+      run: echo ${{ github.ref_name }}
     - name: Extract branch name
       id: extract_branch
       shell: bash
@@ -18,10 +20,10 @@ jobs:
 
   maven-central-deploy-develop:
     needs: get-branch-name
-    if: github.ref_name == 'develop'
+    if: ${{ github.ref_name == 'develop' }}
     uses: ./.github/workflows/release.yml
 
   maven-central-deploy-release:
     needs: get-branch-name
-    if: github.ref_name == 'release/**'
+    if: ${{ github.ref_name == 'release/**' }}
     uses: ./.github/workflows/release.yml
