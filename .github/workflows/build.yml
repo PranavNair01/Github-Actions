@@ -25,5 +25,5 @@ jobs:
 
   maven-central-deploy-release:
     needs: get-branch-name
-    if: ${{ github.ref_name == 'release/**' }}
+    if: ${{ startsWith(github.ref_name, 'release/') }}
     uses: ./.github/workflows/release.yml
