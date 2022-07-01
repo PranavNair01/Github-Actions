@@ -35,11 +35,8 @@ jobs:
       run: echo ${{ needs.get-commit-hash.outputs.e2e-hash }}
     - name: View Commit Hash of current Workflow Run
       run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
-    outputs:
-      e2e-hash: ${{ needs.get-commit-hash.outputs.sha }}
-      current-hash: ${{ needs.get-commit-hash.outputs.sha }}
 
-  maven-central-deploy-develop:
+  maven-central-deploy-release:
     needs: view-hash
-    if: ${{ github.ref_name == 'develop' }}
+    if: ${{ startsWith(github.ref_name, 'release/') }}
     uses: ./.github/workflows/release.yml
