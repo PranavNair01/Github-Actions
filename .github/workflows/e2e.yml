@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
     - name: Get Last Successful Commit Hash of Build Workflow
       id: last-successful-commit
-      uses: nrwl/last-successful-commit-action@v3.1
+      uses: PatrikValkovic/last-successful-commit-action@v3.1
       with:
         branch: 'develop'
         workflow_id: 'build.yml'
