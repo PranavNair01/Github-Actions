@@ -20,12 +20,12 @@ jobs:
         fetch-depth: 0
     - name: Get Last Successful Commit Hash of e2e Workflow
       id: last-successful-commit
-      uses: SamhammerAG/last-successful-build-action@v2
+      uses: nrwl/last-successful-commit-action@v1
       with:
-        token: ${{ github.token }}
-        branch: "develop"
-        workflow: "e2e Workflow"
-        verify: true
+        branch: 'develop'
+        workflow_id: 'e2e.yml'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Get Commit Hash of current Workflow Run
       id: current-commit
       run: echo "::set-output name=sha::${GITHUB_SHA}"
