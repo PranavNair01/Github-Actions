@@ -9,16 +9,16 @@ jobs:
     steps:
     - name: Repository Checkout
       uses: actions/checkout@v2
-#      with:
-#        fetch-depth: 0
-    - uses: bahmutov/npm-install@v1.4.5
+      with:
+        fetch-depth: 0
     - name: Get Last Successful Commit Hash of Build Workflow
       id: last-successful-commit
-      uses: PatrikValkovic/last-successful-commit-action@v3.1
+      uses: SamhammerAG/last-successful-build-action@v2
       with:
-        branch: 'develop'
-        workflow_id: 'build.yml'
-        github_token: ${{ github.token }}
+        token: ${{ github.token }}
+        branch: "develop"
+        workflow: "Build Workflow"
+        verify: true
     - name: Get Commit Hash of current Workflow Run
       id: current-commit
       run: echo "::set-output name=sha::${GITHUB_SHA}"
