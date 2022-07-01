@@ -5,7 +5,6 @@ on:
 #  push:
 #    branches:
 #    - develop
-#just a random commit
 jobs:
   get-commit-hash:
     runs-on: ubuntu-latest
