@@ -35,6 +35,7 @@ jobs:
       run: echo ${{ needs.get-commit-hash.outputs.e2e-hash }}
     - name: View Commit Hash of current Workflow Run
       run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
+    - run: sleep 1m
 
   maven-central-deploy-release:
     needs: view-hash
