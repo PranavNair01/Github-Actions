@@ -6,6 +6,7 @@ on:
     - 'release/**'
 jobs:
   get-commit-hash:
+    name: 'Build Job'
     runs-on: ubuntu-latest
     steps:
     - name: Repository Checkout
@@ -27,17 +28,17 @@ jobs:
       e2e-hash: ${{ steps.last-successful-commit.outputs.sha }}
       current-hash: ${{ steps.current-commit.outputs.sha }}
 
-  view-hash:
-    runs-on: ubuntu-latest
-    needs: get-commit-hash
-    steps:
-    - name: View Last Successful Commit Hash of e2e Workflow
-      run: echo ${{ needs.get-commit-hash.outputs.e2e-hash }}
-    - name: View Commit Hash of current Workflow Run
-      run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
-    - run: sleep 1m
-
-  maven-central-deploy-release:
-    needs: view-hash
-    if: ${{ startsWith(github.ref_name, 'release/') }}
-    uses: ./.github/workflows/release.yml
+#  view-hash:
+#    runs-on: ubuntu-latest
+#    needs: get-commit-hash
+#    steps:
+#    - name: View Last Successful Commit Hash of e2e Workflow
+#      run: echo ${{ needs.get-commit-hash.outputs.e2e-hash }}
+#    - name: View Commit Hash of current Workflow Run
+#      run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
+#    - run: sleep 1m
+#
+#  maven-central-deploy-release:
+#    needs: view-hash
+#    if: ${{ startsWith(github.ref_name, 'release/') }}
+#    uses: ./.github/workflows/release.yml
