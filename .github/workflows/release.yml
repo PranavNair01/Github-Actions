@@ -26,3 +26,4 @@ jobs:
         repo-token: ${{ github.token }}
         wait-interval: 10
         allowed-conclusions: success
+
