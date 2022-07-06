@@ -10,6 +10,7 @@ jobs:
     steps:
     - run: sleep 3m
 
+
   get-commit-hash:
     name: 'Build Job'
     runs-on: ubuntu-latest
