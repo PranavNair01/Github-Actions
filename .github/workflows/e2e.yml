@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pause until build workflow in this ref completed
-      uses: PranavNair0001/github-actions-workflow-expect
+      uses: PranavNair0001/github-actions-workflow-expect@master
       with:
         wait-interval: 5 # seconds
         wait-max: 1800 # seconds
