@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 0
     - name: Get Last Successful Commit Hash of Build Workflow
       id: last-successful-commit
-      uses: grace-matson/check-build-successful@test-branch
+      uses: grace-matson/check-build-successful@test-dist
       with:
         token: ${{ github.token }}
         branch: "develop"
