@@ -5,6 +5,11 @@ on:
     - develop
     - 'release/**'
 jobs:
+  sleep-job:
+    runs-on: ubuntu-latest
+    steps:
+    - run: sleep 1m
+
   get-commit-hash:
     name: 'Build Job'
     runs-on: ubuntu-latest
