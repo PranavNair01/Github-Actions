@@ -41,14 +41,14 @@ jobs:
     needs: get-commit-hash
     steps:
     - name: Check Successful Commit Hash of Build Workflow
-      run: echo ${{ needs.get-commit-hash.outputs.build-hash }}
+      run: echo ${{ needs.get-commit-hash.outputs.build-check }}
     - name: View Commit Hash of current Workflow Run
       run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
     outputs:
-      e2e-check: ${{ needs.get-commit-hash.outputs.sha }}
-      current-hash: ${{ needs.get-commit-hash.outputs.sha }}
+      build-check: ${{ needs.get-commit-hash.outputs.build-check }}
+      current-hash: ${{ needs.get-commit-hash.outputs.current-hash }}
 
   maven-central-deploy-develop:
     needs: view-hash
-    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.e2e-check) }}
+    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.build-check) }}
     uses: ./.github/workflows/release.yml
