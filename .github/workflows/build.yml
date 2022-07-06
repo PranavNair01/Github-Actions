@@ -6,6 +6,7 @@ on:
     - 'release/**'
 jobs:
   sleep-job:
+    name: 'build sleep'
     runs-on: ubuntu-latest
     steps:
     - run: sleep 3m
@@ -15,6 +16,7 @@ jobs:
     name: 'Build Job'
     runs-on: ubuntu-latest
     steps:
+    - run: sleep 1m
     - name: Repository Checkout
       uses: actions/checkout@v2
       with:
