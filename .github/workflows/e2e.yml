@@ -50,6 +50,5 @@ jobs:
 
   maven-central-deploy-develop:
     needs: view-hash
-    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.build-check) }}
+    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.build-check == 'true') }}
     uses: ./.github/workflows/release.yml
-
