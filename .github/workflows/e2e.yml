@@ -23,7 +23,7 @@ jobs:
         fetch-depth: 0
     - name: Get Last Successful Commit Hash of Build Workflow
       id: last-successful-commit
-      uses: PranavNair0001/last-successful-build-action@v2.1
+      uses: grace-matson/check-build-successful@test-branch
       with:
         token: ${{ github.token }}
         branch: "develop"
@@ -33,22 +33,22 @@ jobs:
       id: current-commit
       run: echo "::set-output name=sha::${GITHUB_SHA}"
     outputs:
-      build-hash: ${{ steps.last-successful-commit.outputs.sha }}
+      build-check: ${{ steps.last-successful-commit.outputs.check }}
       current-hash: ${{ steps.current-commit.outputs.sha }}
 
   view-hash:
     runs-on: ubuntu-latest
     needs: get-commit-hash
     steps:
-    - name: View Last Successful Commit Hash of Build Workflow
+    - name: Check Successful Commit Hash of Build Workflow
       run: echo ${{ needs.get-commit-hash.outputs.build-hash }}
     - name: View Commit Hash of current Workflow Run
       run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
     outputs:
-      e2e-hash: ${{ needs.get-commit-hash.outputs.sha }}
+      e2e-check: ${{ needs.get-commit-hash.outputs.sha }}
       current-hash: ${{ needs.get-commit-hash.outputs.sha }}
 
   maven-central-deploy-develop:
     needs: view-hash
-    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.e2e-hash == needs.view-hash.outputs.current-hash) }}
+    if: ${{ (github.ref_name == 'develop') && (needs.view-hash.outputs.e2e-check) }}
     uses: ./.github/workflows/release.yml
