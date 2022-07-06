@@ -8,13 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pause until build workflow in this ref completed
-      uses: PranavNair0001/github-actions-workflow-expect@master
+      uses: lewagon/wait-on-check-action@v1.0.0
       with:
-        wait-interval: 5 # seconds
-        wait-max: 1800 # seconds
-        repo-token: ${{ github.token }}
         ref: ${{ github.ref }}
-        workflow: 'Build Workflow'
+        check-name: 'Check Job'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10
+#      uses: PranavNair0001/github-actions-workflow-expect@master
+#      with:
+#        wait-interval: 5 # seconds
+#        wait-max: 1800 # seconds
+#        repo-token: ${{ github.token }}
+#        ref: ${{ github.ref }}
+#        workflow: 'Build Workflow'
   get-commit-hash:
     runs-on: ubuntu-latest
     needs: sleep-job
