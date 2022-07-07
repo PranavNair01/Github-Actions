@@ -1,0 +1,20 @@
+name: Calling Workflow 2
+on:
+  push:
+    branches:
+    - develop
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Hello from Calling Workflow 2"
+    - run: echo "My ref is " + ${{ github.ref }}
+    - name: Extract branch name
+      id: extract_branch
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+    - run: echo "My ref value is:" + ${{ steps.extract_branch.outputs.branch }}
+
+  reusable_workflow:
+    uses: ./.github/workflows/called.yml
