@@ -24,8 +24,7 @@ jobs:
 ##        workflow: 'Build Workflow'
   get-commit-hash:
     name: 'e2e Job'
-    runs-on: ubuntu-latest
-    needs:
+    runs-on: self-hosted
     steps:
     - name: Repository Checkout
       uses: actions/checkout@v2

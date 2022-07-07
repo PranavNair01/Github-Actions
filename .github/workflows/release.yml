@@ -22,6 +22,14 @@ jobs:
       uses: lewagon/wait-on-check-action@v1.0.0
       with:
         ref: ${{ github.ref }}
+        check-name: 'build sleep'
+        repo-token: ${{ github.token }}
+        wait-interval: 10
+        allowed-conclusions: success
+    - name: Wait for e2e to succeed
+      uses: lewagon/wait-on-check-action@v1.0.0
+      with:
+        ref: ${{ github.ref }}
         check-name: 'e2e Job'
         repo-token: ${{ github.token }}
         wait-interval: 10

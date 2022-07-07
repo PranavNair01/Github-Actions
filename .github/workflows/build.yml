@@ -7,14 +7,14 @@ on:
 jobs:
   sleep-job:
     name: 'build sleep'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - run: sleep 3m
     
 
   get-commit-hash:
     name: 'Build Job'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - run: sleep 1m
     - name: Repository Checkout
