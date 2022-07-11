@@ -1,0 +1,55 @@
+name: Build Workflow
+on:
+  workflow_dispatch:
+
+#  push:
+#    branches:
+#    - develop
+#    - 'release/**'
+jobs:
+  sleep-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pause until all workflows are completed
+      uses: willgarcia/workflow-wait-action@0.1.0
+  get-commit-hash:
+    runs-on: ubuntu-latest
+    needs: sleep-job
+    steps:
+    - name: Repository Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Get Last Successful Commit Hash of e2e Workflow
+      id: last-successful-commit
+      uses: grace-matson/last-successful-build-action@v2.0.6
+      with:
+        token: ${{ github.token }}
+        branch: "develop"
+        workflow: "e2e Workflow"
+        verify: true
+    - name: Get Commit Hash of current Workflow Run
+      id: current-commit
+      run: echo "::set-output name=sha::${GITHUB_SHA}"
+    outputs:
+      e2e-hash: ${{ steps.last-successful-commit.outputs.sha }}
+      current-hash: ${{ steps.current-commit.outputs.sha }}
+
+  view-hash:
+    runs-on: ubuntu-latest
+    needs: get-commit-hash
+    steps:
+    - name: View Last Successful Commit Hash of e2e Workflow
+      run: echo ${{ needs.get-commit-hash.outputs.e2e-hash }}
+    - name: View Commit Hash of current Workflow Run
+      run: echo ${{ needs.get-commit-hash.outputs.current-hash }}
+
+  maven-central-deploy-develop:
+    needs: view-hash
+    if: ${{ github.ref_name == 'develop' }}
+    uses: ./.github/workflows/release.yml
+
+  maven-central-deploy-release:
+    needs: view-hash
+    if: ${{ startsWith(github.ref_name, 'release/') }}
+    uses: ./.github/workflows/release.yml

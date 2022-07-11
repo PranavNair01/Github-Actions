@@ -1,0 +1,8 @@
+name: Release Workflow
+on: workflow_call
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "Hello from Release Workflow"
+    - run: echo "My ref is " + ${{ github.ref }}
