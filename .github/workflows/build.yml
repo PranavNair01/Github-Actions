@@ -5,11 +5,11 @@ on:
     - develop
     - 'release/**'
 jobs:
-  sleep-job:
-    name: 'build sleep'
-    runs-on: self-hosted
-    steps:
-    - run: sleep 3m
+#  sleep-job:
+#    name: 'build sleep'
+#    runs-on: self-hosted
+#    steps:
+#    - run: sleep 3m
     
 
   get-commit-hash:
