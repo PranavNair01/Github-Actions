@@ -13,5 +13,7 @@ jobs:
     steps:
     - run: echo ${{ github.ref }}
     - run: echo ${{ github.sha }}
+    - run: echo ${{ github.event_name }}
+    - run: echo ${{ toJSON(github.event) }}
     - uses: actions/checkout@v3
     - run: ls
